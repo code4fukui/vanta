@@ -22,8 +22,8 @@
 ## Basic usage with script tags:
 
 ```html
-<script src="https://code4fukui.github.io/vanta/src/vanta.rings.js"></script>
-<vanta-rings></vanta-rings>
+<script type="module" src="https://code4fukui.github.io/vanta/src/vanta.rings.js"></script>
+<vanta-rings style="display: block; width: 100vw; height: 100vh;"></vanta-rings>
 ```
 
 ### todo
