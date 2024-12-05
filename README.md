@@ -30,7 +30,7 @@
 
 - support another files
 
-[View fiddle &rarr;](https://jsfiddle.net/usdzfbLt/1/)
+[View fiddle &rarr;](https://jsfiddle.net/oyr6s72u/)
 
 ## More options:
 
