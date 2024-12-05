@@ -1,8 +1,9 @@
+import * as THREE from "https://code4fukui.github.io/three.js/build/three.module.js";
 import {mobileCheck, q, color2Hex, clearThree} from './helpers.js'
 // const DEBUGMODE = window.location.toString().indexOf('VANTADEBUG') !== -1
 
 const win = typeof window == 'object'
-let THREE = (win && window.THREE) || {}
+//let THREE = (win && window.THREE) || {}
 if (win && !window.VANTA) window.VANTA = {}
 const VANTA = (win && window.VANTA) || {}
 VANTA.register = (name, Effect) => {

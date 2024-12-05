@@ -1,7 +1,8 @@
 import VantaBase, {VANTA} from './_base.js'
 import {rn, ri, sample, mobileCheck} from './helpers.js'
+import * as THREE from "https://code4fukui.github.io/three.js/build/three.module.js";
 
-let THREE = (typeof window == 'object' && window.THREE)
+//let THREE = (typeof window == 'object' && window.THREE)
 
 class Rings extends VantaBase {
   static initClass() {
@@ -27,7 +28,7 @@ class Rings extends VantaBase {
     ];
   }
   constructor(userOptions) {
-    THREE = userOptions.THREE || THREE
+    //THREE = userOptions.THREE || THREE
     super(userOptions)
   }
 
@@ -275,4 +276,26 @@ class Rings extends VantaBase {
   }
 }
 Rings.initClass()
-export default VANTA.register('RINGS', Rings)
+const RINGS = VANTA.register('RINGS', Rings);
+export default RINGS;
+
+import { parseAttributes } from "./parseAttribute.js";
+
+const params = [
+  "mouseControls",
+  "touchControls",
+  "gyroControls",
+  "minHeight",
+  "minWidth",
+  "scale",
+  "scaleMobile",
+];
+
+export class VantaRings extends HTMLElement {
+  constructor() {
+    super();
+    const opt = parseAttributes(this, params);
+    RINGS(opt);
+  }
+};
+customElements.define("vanta-rings", VantaRings);

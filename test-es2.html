@@ -1,0 +1,36 @@
+<vanta-rings id=bg mouseControls=false minWidth=500></vanta-rings>
+
+<style>
+body {
+  margin: 0;
+  height: 100%;
+}
+#bg {
+  display: block;
+  height: 100vh;
+}
+</style>
+
+<script type="module">
+import RINGS from "./src/vanta.rings.js";
+import { parseAttributes } from "./src/parseAttribute.js";
+
+const params = [
+  "mouseControls",
+  "touchControls",
+  "gyroControls",
+  "minHeight",
+  "minWidth",
+  "scale",
+  "scaleMobile",
+];
+
+class VantaRings extends HTMLElement {
+  constructor() {
+    super();
+    const opt = parseAttributes(this, params);
+    RINGS(opt);
+  }
+};
+customElements.define("vanta-rings", VantaRings);
+</script>
