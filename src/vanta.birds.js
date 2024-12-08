@@ -4,9 +4,10 @@ import VantaBase, { VANTA } from './_base.js'
 // import {rn, ri, sample} from './helpers.js'
 import {mobileCheck} from './helpers.js'
 import GPUComputationRenderer from '../vendor/GPUComputationRenderer.js'
+import * as THREE from "https://code4fukui.github.io/three.js/build/three.module.js";
 
 const win = typeof window == 'object'
-let THREE = win && window.THREE
+//let THREE = win && window.THREE
 const GPGPU = !mobileCheck()
 
 let WIDTH = 32
@@ -612,7 +613,7 @@ class Birds extends VantaBase {
   }
 
   constructor(userOptions) {
-    THREE = userOptions.THREE || THREE
+    //THREE = userOptions.THREE || THREE
     super(userOptions)
   }
 
@@ -690,6 +691,7 @@ class Birds extends VantaBase {
     const options = this.options
     const color1 = options.color1 != null ? options.color1 : 0x440000
     const color2 = options.color2 != null ? options.color2 : 0x660000
+    //console.log("color1", color1, "color2", color2)
     const c1 = new THREE.Color(color1)
     const c2 = new THREE.Color(color2)
     const gradient = options.colorMode.indexOf('Gradient') != -1
@@ -875,4 +877,29 @@ class Birds extends VantaBase {
   onResize() {}
 }
 Birds.initClass()
-export default VANTA.register('BIRDS', Birds)
+const VANTA_BIRDS = VANTA.register('BIRDS', Birds);
+export default VANTA_BIRDS;
+
+import { parseAttributes } from "./parseAttribute.js";
+
+const params = [
+  "mouseControls",
+  "touchControls",
+  "gyroControls",
+  "minHeight",
+  "minWidth",
+  "scale",
+  "scaleMobile",
+];
+Object.keys(Birds.prototype.defaultOptions).forEach(i => params.push(i));
+console.log(params);
+
+export class VantaBirds extends HTMLElement {
+  constructor() {
+    super();
+    const opt = parseAttributes(this, params);
+    console.log(opt);
+    VANTA_BIRDS(opt);
+  }
+};
+customElements.define("vanta-birds", VantaBirds);

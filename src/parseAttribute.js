@@ -1,6 +1,7 @@
 export const parseAttribute = (s) => {
   if (s == "false") return false;
   if (s == "true") return true;
+  if (s.startsWith("0x")) return parseInt(s.substring(2), 16);
   return s;
 }
 
@@ -12,5 +13,5 @@ export const parseAttributes = (el, params) => {
       opt[name] = parseAttribute(v);
     }
   }
-  return el;
+  return opt;
 };

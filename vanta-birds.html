@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>vanta-birds</title>
+</head><body>
+<style>
+body {
+  margin: 0;
+}
+</style>
+
+<script type="module" src="./src/vanta.birds.js"></script>
+<vanta-birds
+  style="z-index: -1; display: block; width: 100vw; height: 100vh;"
+  backgroundColor="0x000000"
+  color1="0xcf0000"
+  color2="0x7f0000"
+  colorMode=""
+  birdSize="2"
+  wingSpan="10"
+  speedLimit="6"
+  separation="20"
+  alignment="30"
+  cohesion="50"
+  quantity="7"
+  x-mouseControls=false
+  x-minWidth=500
+></vanta-waves>
+
+<div id=src>&lt;script type="module" src="https://code4fukui.github.io/vanta/src/vanta.birds.js"&gt;&lt;/script&gt;
+&lt;vanta-birds
+  style="z-index: -1; display: block; width: 100vw; height: 100vh;"
+  backgroundColor="0x000000"
+  color1="0xcf0000"
+  color2="0x7f0000"
+  colorMode=""
+  birdSize="2"
+  wingSpan="10"
+  speedLimit="6"
+  separation="20"
+  alignment="30"
+  cohesion="50"
+  quantity="7"
+  x-mouseControls=false
+  x-minWidth=500
+&gt;&lt;/vanta-waves&gt;
+</div>
+
+<!--
+    this.prototype.defaultOptions = {
+      // Beige: 0xf8e8d0, 0xf50000, 0xcfcf1d
+      backgroundColor: 0x07192F, // 0x202428
+      color1: 0xff0000, // 0xf50000 # 0xfa9898
+      color2: 0x00d1ff, // 0xcfcf1d # 0x8c4646
+      colorMode: 'varianceGradient', // Gradient / (variance or mix)
+      birdSize: 1,
+      wingSpan: 30,
+      speedLimit: 5,
+      separation: 20,
+      alignment: 20,
+      cohesion: 20,
+      quantity: 5, // range from 2 to 5
+    }
+-->
+<script type="module">
+document.body.onclick = () => document.body.requestFullscreen();
+src.onclick = () => src.classList.toggle("hidden");
+</script>
+
+<style>
+#src {
+  white-space: pre-wrap;
+  color: white;
+  font-size: 120%;
+  font-family: sans-serif;
+  padding: 1.5em;
+}
+.hidden {
+  opacity: 0;
+}
+</style>
+
+
+</body></html>
