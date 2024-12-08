@@ -2,13 +2,13 @@
 
 import VantaBase, { VANTA } from './_base.js'
 // import {rn, ri, sample} from './helpers.js'
-import {mobileCheck} from './helpers.js'
+//import {mobileCheck} from './helpers.js'
 import GPUComputationRenderer from '../vendor/GPUComputationRenderer.js'
 import * as THREE from "https://code4fukui.github.io/three.js/build/three.module.js";
 
-const win = typeof window == 'object'
+//const win = typeof window == 'object'
 //let THREE = win && window.THREE
-const GPGPU = !mobileCheck()
+const GPGPU = true; //!mobileCheck()
 
 let WIDTH = 32
 let BIRDS = WIDTH * WIDTH
@@ -691,7 +691,6 @@ class Birds extends VantaBase {
     const options = this.options
     const color1 = options.color1 != null ? options.color1 : 0x440000
     const color2 = options.color2 != null ? options.color2 : 0x660000
-    //console.log("color1", color1, "color2", color2)
     const c1 = new THREE.Color(color1)
     const c2 = new THREE.Color(color2)
     const gradient = options.colorMode.indexOf('Gradient') != -1
@@ -730,16 +729,15 @@ class Birds extends VantaBase {
     const options = this.options
     let boid, bird
 
-    if (GPGPU) {
-      try {
-        this.initComputeRenderer()
-        this.valuesChanger = this.valuesChanger.bind(this)
-        this.valuesChanger()
-        this.initGpgpuBirds()
-      } catch (err) {
-        console.error('[vanta.js] birds init error: ', err)
-      }
-    } else {
+    try {
+      this.initComputeRenderer()
+      this.valuesChanger = this.valuesChanger.bind(this)
+      this.valuesChanger()
+      this.initGpgpuBirds()
+    } catch (err) {
+      //console.error('[vanta.js] birds init error: ', err)
+      console.error("[vanta.js] can't use GPGPU");
+
       const numBirds = 6 * Math.pow(2, options.quantity)
       for (var i = 0; i < numBirds; i++) {
         boid = boids[i] = new Boid(options)
@@ -755,6 +753,7 @@ class Birds extends VantaBase {
 
         const newBirdGeo = getNewBirdGeometryBasic(options)
         const numV = newBirdGeo.attributes.position.length
+        /*
         const birdColors = new THREE.BufferAttribute(new Float32Array(numV), 3)
         if (gradient) {
           for (var j=0; j<newBirdGeo.index.array.length; j+=3) {
@@ -775,11 +774,13 @@ class Birds extends VantaBase {
           }
         }
         newBirdGeo.setAttribute('color', birdColors)
+        */
 
         bird = birds[i] = new THREE.Mesh(
           newBirdGeo,
           new THREE.MeshBasicMaterial( {
-            color: 0xffffff,
+            //color: 0xffffff,
+            color: this.getNewCol(i / numBirds),
             side: THREE.DoubleSide,
             // colors: THREE.VertexColors,
 					  vertexColors: THREE.VertexColors,
@@ -892,13 +893,11 @@ const params = [
   "scaleMobile",
 ];
 Object.keys(Birds.prototype.defaultOptions).forEach(i => params.push(i));
-console.log(params);
 
 export class VantaBirds extends HTMLElement {
   constructor() {
     super();
     const opt = parseAttributes(this, params);
-    console.log(opt);
     VANTA_BIRDS(opt);
   }
 };
