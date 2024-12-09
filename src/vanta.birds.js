@@ -584,7 +584,7 @@ class Birds extends VantaBase {
             color: this.getNewCol(i / numBirds),
             side: THREE.DoubleSide,
             // colors: THREE.VertexColors,
-					  vertexColors: THREE.VertexColors,
+					  //vertexColors: THREE.VertexColors,
           }))
         bird.phase = Math.floor( Math.random() * 62.83 )
         bird.position.x = boids[i].position.x

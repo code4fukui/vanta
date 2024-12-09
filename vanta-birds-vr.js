@@ -105,7 +105,7 @@ for (let i = 0; i < numBirds; i++) {
       color: getNewCol(i / numBirds, options),
       side: THREE.DoubleSide,
       // colors: THREE.VertexColors,
-      vertexColors: THREE.VertexColors,
+      // vertexColors: THREE.VertexColors,
     })
   );
   bird.phase = Math.floor(Math.random() * 62.83)
@@ -174,4 +174,4 @@ document.body.onkeydown = (e) => {
   }
 };
 
-export { scene };
+export { scene, renderer };
